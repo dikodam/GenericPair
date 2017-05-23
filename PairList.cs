@@ -1,41 +1,73 @@
 ﻿using System.Collections;
-using System.ComponentModel;
 
+// ReSharper disable InconsistentNaming
 namespace GenericPair
 {
-    public class PairList<TA, TB> : IEnumerable where TA : class, ILike where TB : class, ILike
+    public class PairList<T1, T2> : IEnumerable where T1 : class, ILike where T2 : class, ILike
     {
-        class PairWrapper<T1, T2> where T1: class, TA where T2 : class, TB
+        class PairWrapper
         {
-            public Pair<T1, T2> Data { get; set; }
-            public PairWrapper<T1, T2> Next { get; set; }
+            public Pair<T1, T2> Data { get; }
+            public PairWrapper Next { get; set; }
+
+            public PairWrapper(Pair<T1, T2> pair)
+            {
+                Data = pair;
+            }
+
+            public bool HasNext => Next != null;
         }
 
-        private PairWrapper<TA, TB> first;
-
+        private PairWrapper first;
 
         public IEnumerator GetEnumerator()
         {
-            while (first.Next != null)
+            PairWrapper current = first;
+
+            while (current != null)
             {
-                yield return first;
+                yield return current.Data;
+                current = current.Next;
             }
-
         }
 
-        public void Add(Pair<TA, TB> pairToAdd)
+        public void Add(Pair<T1, T2> pairToAdd)
         {
-
+            if (first == null)
+            {
+                first = new PairWrapper(pairToAdd);
+            }
+            else
+            {
+                PairWrapper last = first;
+                while (last.HasNext)
+                {
+                    last = last.Next;
+                }
+                last.Next = new PairWrapper(pairToAdd);
+            }
         }
 
-        public PairList<TA, TB> FitTogether()
+        public PairList<T1, T2> FitTogether()
         {
-            return new PairList<TA, TB>();
+            PairList<T1, T2> fittingPairs = new PairList<T1, T2>();
+            foreach (Pair<T1, T2> pair in this)
+                if (pair.FitTogether())
+                {
+                    fittingPairs.Add(pair);
+                }
+            return fittingPairs;
         }
 
-        public PairList<TA, TB> FitNotTogether()
+        public PairList<T1, T2> FitNotTogether()
         {
-            return new PairList<TA, TB>();
+            PairList<T1, T2> notFittingPairs = new PairList<T1, T2>();
+            foreach (Pair<T1, T2> pair in this)
+                if (!pair.FitTogether())
+                {
+                    notFittingPairs.Add(pair);
+                }
+            return notFittingPairs;
         }
     }
 }
