@@ -54,13 +54,8 @@ namespace GenericPair
 
         public IEnumerator GetEnumerator()
         {
-            PairWrapper current = first;
-
-            while (current != null)
-            {
+            for (PairWrapper current = first; current != null; current = current.Next)
                 yield return current.Data;
-                current = current.Next;
-            }
         }
 
         /// <summary>
