@@ -1,6 +1,4 @@
-﻿using GenericPair;
-
-namespace GenericPair
+﻿namespace GenericPair
 {
     public abstract class Creature : ILike
     {
@@ -27,10 +25,7 @@ namespace GenericPair
         {
         }
 
-        public override bool Check(ILike you)
-        {
-            return you is Human || you is Cat;
-        }
+        public override bool Check(ILike you) => you is Human || you is Cat;
     }
 
     public class Cat : Animal
@@ -39,10 +34,7 @@ namespace GenericPair
         {
         }
 
-        public override bool Check(ILike you)
-        {
-            return you is Cat;
-        }
+        public override bool Check(ILike you) => you is Cat;
     }
 
     public class Dog : Animal
@@ -51,10 +43,7 @@ namespace GenericPair
         {
         }
 
-        public override bool Check(ILike you)
-        {
-            return true;
-        }
+        public override bool Check(ILike you) => true;
     }
 
     public class Spider : Animal
@@ -63,9 +52,6 @@ namespace GenericPair
         {
         }
 
-        public override bool Check(ILike you)
-        {
-            return false;
-        }
+        public override bool Check(ILike you) => false;
     }
 }

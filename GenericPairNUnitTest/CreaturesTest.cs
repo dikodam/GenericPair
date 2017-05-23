@@ -26,18 +26,13 @@ namespace GenericPairNUnitTest
 
 
         [Test]
-        public void CreatureTest()
+        public void CreatureNameTest()
         {
             SmallCreature tested = new SmallCreature("Horst");
             Assert.AreEqual("Horst", tested.Name);
         }
 
-        public void HumanNameTest()
-        {
-            Human tested = new Human("Fritz");
-            Assert.AreEqual(tested.Name, "Fritz");
-        }
-
+        [Test]
         public void HumanLikeTest()
         {
             Assert.IsTrue(human.Check(human));
@@ -46,6 +41,7 @@ namespace GenericPairNUnitTest
             Assert.IsFalse(human.Check(spider));
         }
 
+        [Test]
         public void CatLikeTest()
         {
             Assert.IsTrue(cat.Check(cat));
@@ -54,6 +50,7 @@ namespace GenericPairNUnitTest
             Assert.IsFalse(cat.Check(spider));
         }
 
+        [Test]
         public void DogLikeTest()
         {
             Assert.IsTrue(dog.Check(dog));
@@ -62,6 +59,7 @@ namespace GenericPairNUnitTest
             Assert.IsTrue(dog.Check(spider));
         }
 
+        [Test]
         public void SpiderLikeTest()
         {
             Assert.IsFalse(spider.Check(spider));
@@ -69,6 +67,5 @@ namespace GenericPairNUnitTest
             Assert.IsFalse(spider.Check(cat));
             Assert.IsFalse(spider.Check(dog));
         }
-
     }
 }
