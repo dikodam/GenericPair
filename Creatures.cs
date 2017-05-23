@@ -10,6 +10,8 @@
         }
 
         public abstract bool Check(ILike you);
+
+        public override string ToString() => Name;
     }
 
     public abstract class Animal : Creature

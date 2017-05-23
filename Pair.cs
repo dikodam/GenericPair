@@ -12,5 +12,7 @@
         }
 
         public bool FitTogether() => A.Check(B) && B.Check(A);
+
+        public override string ToString() => $"{A} + {B}";
     }
 }
