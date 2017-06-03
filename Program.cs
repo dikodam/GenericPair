@@ -4,6 +4,10 @@ namespace GenericPair
 {
     internal class Program
     {
+        /// <summary>
+        /// this is the main program of the 
+        /// </summary>
+        /// <param name="args">should be empty, dude. if it's not, I don't care, though.</param>
         public static void Main(string[] args)
         {
             // 1

@@ -11,8 +11,12 @@
             B = b;
         }
 
+        /// <summary/>
+        /// <returns> returns the result of A.Check(B) AND B.Check(A)</returns>
         public bool FitTogether() => A.Check(B) && B.Check(A);
 
+        /// <summary/>
+        /// <returns>returns a string representation of the given pair object</returns>
         public override string ToString() => $"{A} + {B}";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 
+// the following comment is only for programmers developing with with cool IDEs only, ignore if you're a VisualStudio noob
 // ReSharper disable InconsistentNaming
 namespace GenericPair
 {
@@ -50,8 +51,16 @@ namespace GenericPair
 
         #endregion
 
+        /// <summary>
+        /// the reference to the first object in the list (null if the list is empty, duh!)
+        /// </summary>
         private PairWrapper first;
 
+        /// <summary>
+        /// careful, sick magic happening here! 
+        /// </summary>
+        /// <returns>returns an Enumerator object so you can iterate SUPER EASILY over the list using a foreach. <br/>
+        /// it's true! Everybody says so!</returns>
         public IEnumerator GetEnumerator()
         {
             for (PairWrapper current = first; current != null; current = current.Next)
@@ -67,7 +76,7 @@ namespace GenericPair
         {
             if (pairToAdd == null)
             {
-                throw new ArgumentException("pair to be added may not be null");
+                throw new ArgumentException("pair to be added must not be null");
             }
             if (first == null)
             {
@@ -84,6 +93,9 @@ namespace GenericPair
             }
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns> returns a new list of pairs that fit together according to the <see cref="Pair.FitTogether"/> method</returns>
         public PairList<T1, T2> FitTogether()
         {
             PairList<T1, T2> fittingPairs = new PairList<T1, T2>();
@@ -95,6 +107,8 @@ namespace GenericPair
             return fittingPairs;
         }
 
+        /// <summary/>
+        /// <returns>returns a list of pairs that do not fit together according to the <see cref="Pair.FitTogether"/> method</returns>
         public PairList<T1, T2> FitNotTogether()
         {
             PairList<T1, T2> notFittingPairs = new PairList<T1, T2>();
